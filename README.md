@@ -1,0 +1,3 @@
+# FPGA-beeper-music
+The main purpose of this project is to upload the infor-code of 4x4 keyboard to PC via RS232 interface. To give full play of the resourses on the microcontroller, the code information can be displayed on the nixietube and at the same time, the beeper can be used to play music. See the code for more information.                                                 gen_snd is the top module of the project, several .v files are used for the communication of RS232 interface.                           First time to use Github, if there's anything wrong, feel free to tell me, thx.
+Now it seems that some unexpected errors are going on. So I'll check it out and update the code later this week.2019/5/21
