@@ -1,6 +1,4 @@
-//上传的数据显示在数码管上
-//module scan_led(seg,scan,clk,data1,data2,data3,data4,data5,data6);
-module scan_led(seg,scan,clk,datain);
+module scan_led(seg,scan,clk,datain,num1,num2);
 	input clk;//板载时钟
 	input[7:0] datain;//读入数据
 	output[7:0] seg;//段选控制信号
@@ -11,8 +9,7 @@ module scan_led(seg,scan,clk,datain);
 	reg cp=0;//控制数码管闪烁频率的时钟
 	reg[20:0] div=0; //时钟分频
 	reg[3:0] data,data1,data2;
-//	input[3:0] data1,data2,data3,data4,data5,data6;//待动态显示的十位与个位数字
-	
+	input[3:0] num1,num2;
 	always@(posedge clk)
 		begin
 			data1<=datain;
@@ -32,7 +29,7 @@ module scan_led(seg,scan,clk,datain);
 	always @(posedge cp)
 		begin
 			cnt6=cnt6+1;
-			if(cnt6==3'd2) cnt6=0;
+			if(cnt6==3'd6) cnt6=0;
 		end
 		
 	always @(posedge cp)
@@ -40,6 +37,8 @@ module scan_led(seg,scan,clk,datain);
 			case(cnt6[2:0])
 			3'b000: begin scan<='b111110;data<=data1;end
 			3'b001: begin scan<='b111101;data<=data2;end
+			3'b100: begin scan<='b111011;data<=num2;end
+			3'b101: begin scan<='b110111;data<=num1;end
 			default: scan<='b111111;
 			endcase
 		end

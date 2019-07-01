@@ -1,8 +1,7 @@
-//串口通信波特率调节模块（波特率可调）
 module bps(clk,rst,bpssrt,bpsclk,choose);
 //波特率设置函数
 	input clk,rst;	
-	input bpssrt;	//波特率时钟启动信号置位
+	input bpssrt;	//接收到数据后，波特率时钟启动信号置位
 	input[1:0] choose;//选择波特率,通过两个拨码开关控制
 	output reg bpsclk;	//bpsclk的高电平为接收或者发送数据位的中间采样点
 	reg[13:0] bps,smp;	//波特率、采样率
